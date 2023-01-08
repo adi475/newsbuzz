@@ -29,6 +29,10 @@ export default class News extends Component {
     };
   }
 
+
+  //componentDidMount is a life cycle method which runs after render. it is an asynchrounsied function.
+     // await keyword  can be used in async function to wait for the completion of that particular statement and then proceed further.
+
   async updateNews() {
 
     const url =
@@ -45,23 +49,7 @@ export default class News extends Component {
 
   }
 
-
-    //componentDidMount is a life cycle method which runs after render. it is an asynchrounsied function.
-     // await keyword  can be used in async function to wait for the completion of that particular statement and then proceed further.
-
  async componentDidMount() {
-
-    // const url =
-    //   `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=5b28105830da47ffaff4ced94d7b00ca&page=${this.state.page}&pageSize=${this.props.pageSize}`;
-    //   this.setState({loading:true});
-    // let data = await fetch(url);
-    // let parsedData = await data.json();
-    // console.log(parsedData);
-    // this.setState({
-    //   Article: parsedData.articles,               
-    //   totalResults: parsedData.totalResults,
-    //   loading: false
-    // });
 
     this.updateNews()
 
@@ -70,44 +58,19 @@ export default class News extends Component {
 
   handleOnPrev = async () => {
 
-    // const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=5b28105830da47ffaff4ced94d7b00ca&page=${
-    //   this.state.page - 1
-    // }&pageSize=${this.props.pageSize}`;
-    // this.setState({loading:true});
-    // let data = await fetch(url);
-    // let parsedData = await data.json();
-    // console.log(parsedData);
-    // this.setState({
-    //   page: this.state.page - 1,
-    //   Article: parsedData.articles,
-    //   loading: false
-    // });
     this.setState({page: this.state.page - 1});
     this.updateNews()
+    
   }
 
 
   handleOnNxt = async () => {
 
-  //   if(!(Math.ceil(this.state.totalResults/this.props.pageSize) < this.state.page+1)){
-
-  //   const url = `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=5b28105830da47ffaff4ced94d7b00ca&page=${
-  //     this.state.page + 1
-  //   }&pageSize=${this.props.pageSize}`;
-  //   this.setState({loading:true});
-  //   let data = await fetch(url);
-  //   let parsedData = await data.json();
-  //   console.log(parsedData);
-  //   this.setState({
-  //     page: this.state.page + 1,
-  //     Article: parsedData.articles,
-  //     loading: false
-  //   });
-  // }
   this.setState({page: this.state.page + 1});
   this.updateNews()
+
   }
-  
+
 
   render() {
     return (
