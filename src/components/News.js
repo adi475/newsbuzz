@@ -35,18 +35,20 @@ export default class News extends Component {
      // await keyword  can be used in async function to wait for the completion of that particular statement and then proceed further.
 
   async updateNews() {
-
+     this.props.updateProgress(5);
     const url =
-      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=5b28105830da47ffaff4ced94d7b00ca&page=${this.state.page}&pageSize=${this.props.pageSize}`;
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page}&pageSize=${this.props.pageSize}`;
       this.setState({loading:true});
     let data = await fetch(url);
     let parsedData = await data.json();
+    this.props.updateProgress(40);
     console.log(parsedData);
     this.setState({
       Article: parsedData.articles,                //here "articles" is the array of news items in the data fetched by an Api.
       totalResults: parsedData.totalResults,
       loading: false
     });
+    this.props.updateProgress(100);
 
   }
 
@@ -59,11 +61,10 @@ export default class News extends Component {
    fetchMoreData = async() => {
 
     const url =
-      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=5b28105830da47ffaff4ced94d7b00ca&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
+      `https://newsapi.org/v2/top-headlines?country=${this.props.country}&category=${this.props.category}&apiKey=${this.props.apiKey}&page=${this.state.page+1}&pageSize=${this.props.pageSize}`;
     
     let data = await fetch(url);
     let parsedData = await data.json();
-    console.log(parsedData);
     this.setState({
       page: this.state.page+1 ,
       Article: this.state.Article.concat(parsedData.articles),               
@@ -93,7 +94,7 @@ export default class News extends Component {
   render() {
     return (
       <>
-        <h1 className="text-center">newsBuzz - Top {this.props.category} Headlines</h1>
+        <h1 className="text-center my-4">newsBuzz - Top {this.props.category} Headlines</h1>
         <hr />
         {this.state.loading && <Spinner/>}
 
