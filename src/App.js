@@ -60,9 +60,9 @@ export default function App() {
 
 //   apiKey = process.env.REACT_APP_NEWS_API;
 
-//    state = {
-//     progress: 0
-//    }
+  //  state = {
+  //   progress: 0
+  //  }
 
 //    setProgress = (progress) => {
 //       this.setState({progress : progress})
